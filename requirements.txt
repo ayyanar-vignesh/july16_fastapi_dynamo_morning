@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+boto3
+python-dotenv
+jinja2
+python-multipart

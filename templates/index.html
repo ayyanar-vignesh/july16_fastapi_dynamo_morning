@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit Data to DynamoDB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Reset and global styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        /* Header */
+        header {
+            background-color: #1abc9c;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 12px 16px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Container */
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            margin-top: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* Form */
+        form label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form button {
+            background-color: #1abc9c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #16a085;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background-color: #333;
+            color: white;
+            padding: 15px 0;
+            margin-top: 40px;
+        }
+
+        /* Success message */
+        .message {
+            color: green;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            nav a {
+                float: none;
+                text-align: center;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>FastAPI + DynamoDB</h1>
+        <p>Responsive Form Submission Page</p>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Submit</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </nav>
+    
+    
+
+    <div class="container">
+        <h2>Submit Your Info</h2>
+        <form action="/submit/" method="post">
+            <label for="name">Name:</label>
+            <input type="text" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" required>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        {% if message %}
+            <p class="message">{{ message }}</p>
+        {% endif %}
+    </div>
+
+    <footer>
+        <p>&copy; 2025 FastAPI DynamoDB Project | Designed by Ayyanar</p>
+    </footer>
+
+</body>
+</html>
