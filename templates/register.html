@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>INR Bank - Register</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #007a33;
+      color: white;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+    }
+
+    .nav-right a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      background-color: white;
+      color: #002d62;
+      padding: 6px 16px;
+      border-radius: 20px;
+    }
+
+    .register-container {
+      max-width: 500px;
+      margin: 60px auto;
+      background-color: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    .register-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #007a33;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      background-color: #001a70;
+      color: white;
+      padding: 12px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #0033aa;
+    }
+
+    footer {
+      background-color: #003d1f;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 50px;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 600px) {
+      .register-container {
+        margin: 30px 20px;
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">INR <span style="color: lightgreen;">Bank</span></div>
+    <div class="nav-right">
+      <a href="#">🔒 Sign In</a>
+    </div>
+  </header>
+
+  <!-- Register Form -->
+  <div class="register-container">
+    <h2>Create Your INR Bank Account</h2>
+    <form action="/register" method="post">
+      <div class="form-group">
+        <label for="first">First Name</label>
+        <input type="text" id="first" name="first_name" placeholder="Enter your first name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="last">Last Name</label>
+        <input type="text" id="last" name="last_name" placeholder="Enter your last name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required />
+      </div>
+
+      <div class="form-group">
+        <label for="pass">Password</label>
+        <input type="password" id="pass" name="password" placeholder="Create a strong password" required />
+      </div>
+
+      <button type="submit">Register</button>
+    </form>
+    {% if message %}
+        <div class="message">{{ message }}</div>
+    {% endif %}
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 INR Bank. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
+  </footer>
+
+</body>
+</html>

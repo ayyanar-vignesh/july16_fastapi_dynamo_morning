@@ -4,17 +4,15 @@ from fastapi.templating import Jinja2Templates
 import boto3
 import os
 from dotenv import load_dotenv
+import bcrypt  # ✅ NEW
 
-# Load environment variables
+# Load env variables
 load_dotenv()
 
-# Initialize FastAPI app
 app = FastAPI()
-
-# Setup Jinja2 templates directory
 templates = Jinja2Templates(directory="templates")
 
-# DynamoDB setup
+# Connect to DynamoDB
 dynamodb = boto3.resource(
     'dynamodb',
     region_name=os.getenv("AWS_REGION"),
@@ -22,24 +20,45 @@ dynamodb = boto3.resource(
     aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY")
 )
 
-# Get table name from .env
+# Get table name from env
 table_name = os.getenv("DYNAMODB_TABLE_NAME")
 table = dynamodb.Table(table_name)
 
-# Show form page
+
+# ▶ Home Page
 @app.get("/", response_class=HTMLResponse)
-async def show_form(request: Request):
+async def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
 
-# Handle form submission
-@app.post("/submit/", response_class=HTMLResponse)
-async def submit_form(request: Request, name: str = Form(...), email: str = Form(...)):
-    # Insert into DynamoDB
-    response = table.put_item(Item={"name": name, "email": email})
-    print(name,email)
-    return templates.TemplateResponse("index.html", {
-        "request": request,
-        "message": "✅ Data submitted successfully!"
+# ▶ Show Register Page
+@app.get("/register", response_class=HTMLResponse)
+async def show_register_form(request: Request):
+    return templates.TemplateResponse("register.html", {"request": request})
+
+
+# ▶ Handle Register Form
+@app.post("/register", response_class=HTMLResponse)
+async def register_user(
+    request: Request,
+    first_name: str = Form(...),
+    last_name: str = Form(...),
+    email: str = Form(...),
+    password: str = Form(...)
+):
+    # ✅ Hash password before saving
+    hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+    
+    full_name = f"{first_name} {last_name}"
+
+    # ✅ Save to DynamoDB
+    table.put_item(Item={
+        "email": email,
+        "name": full_name,
+        "password": hashed_password
     })
 
+    return templates.TemplateResponse("register.html", {
+        "request": request,
+        "message": "✅ Registration successful! Password is secured."
+    })
