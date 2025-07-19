@@ -17,7 +17,6 @@
       background-color: #eaf2fb;
     }
 
-    /* Sidebar */
     .sidebar {
       width: 220px;
       background-color: #002147;
@@ -48,7 +47,6 @@
       background-color: #004080;
     }
 
-    /* Main Content */
     .main-content {
       margin-left: 220px;
       flex-grow: 1;
@@ -57,7 +55,6 @@
       min-height: 100vh;
     }
 
-    /* Top Nav */
     .top-nav {
       background-color: #0052cc;
       color: white;
@@ -85,14 +82,13 @@
       text-decoration: underline;
     }
 
-    /* Profile Section */
     .profile-section {
       padding: 40px 30px;
       background-color: #ffffff;
       margin: 40px auto;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      max-width: 600px;
+      max-width: 500px;
       width: 90%;
       text-align: center;
     }
@@ -119,13 +115,13 @@
 
     .profile-form {
       text-align: left;
+      margin-top: 20px;
     }
 
     .profile-form label {
       font-weight: 600;
-      margin-top: 20px;
-      display: block;
       margin-bottom: 6px;
+      display: block;
     }
 
     .profile-form input {
@@ -134,20 +130,16 @@
       font-size: 1rem;
       border: 1px solid #ccc;
       border-radius: 6px;
+      margin-bottom: 20px;
     }
 
-    .profile-form .row {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .profile-form .row > div {
-      flex: 1;
+    .profile-form input[readonly] {
+      background-color: #f0f0f0;
+      cursor: not-allowed;
     }
 
     .save-btn {
-      margin-top: 30px;
+      margin-top: 10px;
       background-color: #003d99;
       color: white;
       border: none;
@@ -182,10 +174,6 @@
         gap: 20px;
         flex-wrap: wrap;
       }
-
-      .profile-form .row {
-        flex-direction: column;
-      }
     }
   </style>
 </head>
@@ -205,7 +193,7 @@
   <div class="main-content">
     <!-- Top Navigation -->
     <div class="top-nav">
-      <div class="nav-title">Welcome, {{ name }}</div>
+      <div class="nav-title">Welcome, {{ first_name }} {{ last_name }}</div>
       <div class="nav-links">
         <a href="#">Dashboard</a>
         <a href="#">Transactions</a>
@@ -214,29 +202,28 @@
       </div>
     </div>
 
-    <!-- Profile Card Section -->
+    <!-- Profile Section -->
     <div class="profile-section">
       <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="User Profile Picture" />
 
-      <h2>{{ name }}</h2>
+      <h2>{{ first_name }} {{ last_name }}</h2>
       <p>{{ email }}</p>
 
-      <hr style="margin: 30px 0; border-color: #ccc;" />
+      <form class="profile-form" method="post" action="/update-profile">
+        <label for="first_name">First Name</label>
+        <input type="text" id="first_name" name="first_name" value="{{ first_name }}" required>
 
-      <form class="profile-form">
-        <div class="row">
-          <div>
-            <label>Full Name</label>
-            <input type="text" value="{{ name }}" required>
-          </div>
-          <div>
-            <label>Email Address</label>
-            <input type="email" value="{{ email }}" required>
-          </div>
-        </div>
+        <label for="last_name">Last Name</label>
+        <input type="text" id="last_name" name="last_name" value="{{ last_name }}" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" value="{{ email }}" readonly>
 
         <button type="submit" class="save-btn">Save Changes</button>
       </form>
+       {% if message %}
+    <p style="color: green; margin-top: 15px;">{{ message }}</p>
+  {% endif %}
     </div>
   </div>
 
