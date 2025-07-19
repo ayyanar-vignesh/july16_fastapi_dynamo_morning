@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Login - INR Bank</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     * {
       margin: 0;
@@ -12,46 +13,56 @@
     }
 
     body {
-      background: #f4f4f4;
+      background: #eef4ff;
       text-align: center;
     }
 
     header {
-      background-color: #007a33;
+      background-color: #003366;
       color: white;
       padding: 15px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .logo {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
     }
 
     nav a {
       color: white;
       text-decoration: none;
-      margin-left: 25px;
       font-weight: 500;
+      padding: 6px 14px;
+      background-color: white;
+      color: #003366;
+      border-radius: 20px;
     }
 
     nav a:hover {
-      text-decoration: underline;
+      background-color: #d0e6ff;
     }
 
     .container {
       max-width: 400px;
       margin: 80px auto;
       background: white;
-      padding: 30px;
+      padding: 35px;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
 
     h2 {
-      color: #007a33;
+      color: #0047ab;
       margin-bottom: 20px;
     }
 
@@ -59,45 +70,63 @@
       display: block;
       margin: 15px 0 5px;
       text-align: left;
+      color: #003366;
+      font-weight: 500;
     }
 
     input {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       border-radius: 5px;
       border: 1px solid #ccc;
     }
 
     button {
-      background: #001a70;
+      background: #0052cc;
       color: white;
       padding: 12px;
-      margin-top: 20px;
+      margin-top: 25px;
       width: 100%;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
       font-size: 1rem;
+      font-weight: bold;
       cursor: pointer;
     }
 
     button:hover {
-      background-color: #0033aa;
+      background-color: #003d99;
     }
 
     .error {
       color: red;
       margin-top: 15px;
+      font-weight: 500;
+    }
+
+    footer {
+      background-color: #002244;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #fff;
     }
 
     @media (max-width: 600px) {
       nav {
-        display: flex;
         flex-direction: column;
         gap: 10px;
-      }
-
-      nav a {
-        margin-left: 0;
+        margin-top: 10px;
       }
     }
   </style>
@@ -106,30 +135,35 @@
 
   <!-- Header with logo and nav -->
   <header>
-    <div class="logo">INR Bank</div>
+    <div class="logo">INR <span style="color: lightblue;">Bank</span></div>
     <nav>
-      <a href="/">Home</a>
-      <a href="/register">User Signup</a>
+      <a href="/">🏠 Home</a>
+      <a href="/register">🔓 Sign Up</a>
     </nav>
   </header>
 
   <!-- Login Form -->
   <div class="container">
-    <h2>Login to INR Bank</h2>
+    <h2>Login to Your Account</h2>
     <form method="post" action="/login">
-      <label>Email</label>
-      <input type="email" name="email" required>
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" required>
 
-      <label>Password</label>
-      <input type="password" name="password" required>
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" required>
 
-      <button type="submit">Login</button>
+      <button type="submit">🔐 Login</button>
     </form>
 
     {% if error %}
     <div class="error">{{ error }}</div>
     {% endif %}
   </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 INR Bank. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
+  </footer>
 
 </body>
 </html>

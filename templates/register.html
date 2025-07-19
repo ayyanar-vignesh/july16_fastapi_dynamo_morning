@@ -13,11 +13,11 @@
     }
 
     body {
-      background-color: #f4f4f4;
+      background-color: #f0f4ff;
     }
 
     header {
-      background-color: #007a33;
+      background-color: #003366;
       color: white;
       padding: 15px 40px;
       display: flex;
@@ -35,9 +35,14 @@
       text-decoration: none;
       font-weight: bold;
       background-color: white;
-      color: #002d62;
+      color: #003366;
       padding: 6px 16px;
       border-radius: 20px;
+      margin-left: 10px;
+    }
+
+    .nav-right a:hover {
+      background-color: #d0e6ff;
     }
 
     .register-container {
@@ -52,7 +57,7 @@
     .register-container h2 {
       text-align: center;
       margin-bottom: 30px;
-      color: #007a33;
+      color: #0047ab;
     }
 
     .form-group {
@@ -63,6 +68,7 @@
       display: block;
       font-weight: 500;
       margin-bottom: 6px;
+      color: #003366;
     }
 
     input {
@@ -75,7 +81,7 @@
 
     button {
       width: 100%;
-      background-color: #001a70;
+      background-color: #0052cc;
       color: white;
       padding: 12px;
       font-size: 1rem;
@@ -87,11 +93,25 @@
     }
 
     button:hover {
-      background-color: #0033aa;
+      background-color: #003d99;
+    }
+
+    .message {
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .error {
+      text-align: center;
+      color: red;
+      font-weight: bold;
+      margin-top: 20px;
     }
 
     footer {
-      background-color: #003d1f;
+      background-color: #002244;
       color: white;
       padding: 20px;
       text-align: center;
@@ -120,10 +140,10 @@
 
   <!-- Header -->
   <header>
-    <div class="logo">INR <span style="color: lightgreen;">Bank</span></div>
+    <div class="logo">INR <span style="color: lightblue;">Bank</span></div>
     <div class="nav-right">
-         <a href="/">Home</a>
-      <a href="/login">🔒User Sign In</a>
+      <a href="/">🏠 Home</a>
+      <a href="/login">🔒 Sign In</a>
     </div>
   </header>
 
@@ -145,21 +165,22 @@
         <label for="email">Email Address</label>
         <input type="email" id="email" name="email" placeholder="Enter your email" required />
       </div>
-{% if error %}
-<div style="color: red; margin-top: 20px; text-align: center;">
-  {{ error }}
-</div>
-{% endif %}
+
+      {% if error %}
+      <div class="error">{{ error }}</div>
+      {% endif %}
+
       <div class="form-group">
         <label for="pass">Password</label>
         <input type="password" id="pass" name="password" placeholder="Create a strong password" required />
       </div>
 
       <button type="submit">Register</button>
+
+      {% if message %}
+      <div class="message">{{ message }}</div>
+      {% endif %}
     </form>
-    {% if message %}
-        <div class="message">{{ message }}</div>
-    {% endif %}
   </div>
 
   <!-- Footer -->
