@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>INR Bank - Dashboard</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      display: flex;
+      background-color: #f4f6f9;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background-color: #004d33;
+      height: 100vh;
+      padding: 20px 15px;
+      color: white;
+      position: fixed;
+    }
+
+    .sidebar h2 {
+      font-size: 1.5rem;
+      margin-bottom: 40px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin: 15px 0;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: #006644;
+    }
+
+    /* Main Content */
+    .main-content {
+      margin-left: 220px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Top Nav */
+    .top-nav {
+      background-color: #007a33;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .top-nav .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 30px;
+      font-weight: 500;
+    }
+
+    /* Profile Section */
+    .profile-section {
+      padding: 40px 30px;
+      background-color: #ffffff;
+      margin: 40px auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+      max-width: 600px;
+      width: 90%;
+      text-align: center;
+    }
+
+    .profile-section img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid #007a33;
+      background-color: #e6f3ec;
+      object-fit: cover;
+    }
+
+    .profile-section h2 {
+      margin-top: 20px;
+      color: #004d33;
+    }
+
+    .profile-section p {
+      color: #555;
+      margin: 8px 0 30px;
+      font-size: 1rem;
+    }
+
+    .profile-form {
+      text-align: left;
+    }
+
+    .profile-form label {
+      font-weight: 600;
+      margin-top: 20px;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .profile-form input {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .profile-form .row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .profile-form .row > div {
+      flex: 1;
+    }
+
+    .save-btn {
+      margin-top: 30px;
+      background-color: #001a70;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .save-btn:hover {
+      background-color: #0033aa;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+      .main-content {
+        margin-left: 0;
+      }
+      .profile-form .row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>INR Bank</h2>
+    <a href="#" class="active">Dashboard</a>
+    <a href="#">Accounts</a>
+    <a href="#">Transactions</a>
+    <a href="#">Settings</a>
+    <a href="/">Log Out</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Top Navigation -->
+    <div class="top-nav">
+      <div class="nav-title">Welcome, {{ name }}</div>
+      <div class="nav-links">
+        <a href="#">Dashboard</a>
+        <a href="#">Transactions</a>
+        <a href="#">Accounts</a>
+        <a href="#">Profile</a>
+      </div>
+    </div>
+
+    <!-- Profile Card Section -->
+    <div class="profile-section">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="User Profile Picture" />
+
+      <h2>{{ name }}</h2>
+      <p>{{ email }}</p>
+
+      <hr style="margin: 30px 0; border-color: #ccc;" />
+
+      <form class="profile-form">
+        <div class="row">
+          <div>
+            <label>Full Name</label>
+            <input type="text" value="{{ name }}" required>
+          </div>
+          <div>
+            <label>Email Address</label>
+            <input type="email" value="{{ email }}" required>
+          </div>
+        </div>
+
+        <button type="submit" class="save-btn">Save Changes</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
