@@ -51,6 +51,7 @@ async def register_user(
 ):
     # Check for existing user
     existing_user = table.get_item(Key={"email": email}).get("Item")
+    
     if existing_user:
         return templates.TemplateResponse("register.html", {
             "request": request,
@@ -67,6 +68,7 @@ async def register_user(
         "last_name": last_name,
         "password": hashed_password
     })
+    print(f"user registered successfully {email}")
 
     return templates.TemplateResponse("register.html", {
         "request": request,
